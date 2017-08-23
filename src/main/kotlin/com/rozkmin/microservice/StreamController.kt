@@ -7,7 +7,6 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter
  * Created by michalik on 21.08.17
  */
 @RestController
-@CrossOrigin(origins = arrayOf("http://localhost:8080/"))
 
 @RequestMapping("/stream")
 class StreamController {
@@ -22,7 +21,7 @@ class StreamController {
         element.onCompletion({ this.emmiters.remove(element) })
         element.onTimeout({ this.emmiters.remove(element) })
 
-        return element;
+        return element
     }
 
 
