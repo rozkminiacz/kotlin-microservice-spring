@@ -1,10 +1,13 @@
 buildscript {
 	ext {
 		kotlinVersion = '1.1.4'
-		springBootVersion = '2.0.0.RELEASE'
+		springBootVersion = '2.0.0.BUILD-SNAPSHOT'
 	}
 	repositories {
 		mavenCentral()
+        maven {
+            url 'https://repo.spring.io/libs-snapshot'
+        }
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -39,6 +42,7 @@ dependencies {
 	compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}")
 	compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
 	compile 'org.springframework.boot:spring-boot-starter-web'
+
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
 	testCompile('org.springframework.security:spring-security-test')
