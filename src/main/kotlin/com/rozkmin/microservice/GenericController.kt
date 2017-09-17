@@ -1,6 +1,7 @@
 package com.rozkmin.microservice
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.Example
 import org.springframework.web.bind.annotation.*
 
 /**
@@ -12,13 +13,10 @@ import org.springframework.web.bind.annotation.*
 class GenericController {
 
     @Autowired
-    lateinit var repository: GenericRepository;
+    lateinit var repository: GenericRepository
 
     @GetMapping
     fun getDataObjects() = repository.findAll()
-
-    @GetMapping("/{id}")
-    fun getDataObject(@PathVariable("id") id: String) = repository.findOne(id)
 
     @PostMapping
     fun createDataObject(@RequestBody dataObject: DataObject) = repository.save(dataObject)

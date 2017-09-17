@@ -1,15 +1,14 @@
 package com.rozkmin.microservice
 
+import javax.persistence.Entity
+import javax.persistence.Id
+
 /**
  * Created by michalik on 20.08.17
  */
+@Entity
 class DataObject {
-    lateinit var id: String
+    @Id
+    var id: String = ""
     var name: String = ""
-
-    constructor(name: String) {
-        this.name = name
-    }
-
-    constructor()
 }
