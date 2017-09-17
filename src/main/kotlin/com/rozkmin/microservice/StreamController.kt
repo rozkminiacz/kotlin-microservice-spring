@@ -2,6 +2,7 @@ package com.rozkmin.microservice
 
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter
+import java.util.*
 
 /**
  * Created by michalik on 21.08.17
@@ -41,15 +42,4 @@ class StreamController {
 
 }
 
-class StreamData {
-
-    lateinit var id: String
-    var content: String = ""
-
-    constructor(content: String) {
-        this.content = content
-    }
-
-    constructor()
-
-}
+data class StreamData(val id : String = UUID.randomUUID().toString(), val content : Map<String, Any> = mapOf())
