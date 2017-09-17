@@ -42,4 +42,9 @@ class StreamController {
 
 }
 
-data class StreamData(val id : String = UUID.randomUUID().toString(), val content : Map<String, Any> = mapOf())
+class StreamData {
+
+    val id: String = UUID.randomUUID().toString()
+    val content: Map<String, Any> = mapOf()
+
+}
