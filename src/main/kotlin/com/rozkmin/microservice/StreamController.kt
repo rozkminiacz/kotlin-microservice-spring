@@ -25,7 +25,6 @@ class StreamController {
         return element
     }
 
-
     @PostMapping
     fun notifyAll(@RequestBody streamData: StreamData): StreamData {
         println(streamData)
@@ -44,7 +43,13 @@ class StreamController {
 
 class StreamData {
 
-    val id: String = UUID.randomUUID().toString()
-    val content: Map<String, Any> = mapOf()
+    lateinit var id: String
+    lateinit var content: Map<String, Any>
+
+    constructor(id: String, content: Map<String, Any>){
+        this.id=id;
+        this.content=content
+    }
+    constructor()
 
 }
