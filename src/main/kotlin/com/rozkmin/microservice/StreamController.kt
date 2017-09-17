@@ -44,12 +44,12 @@ class StreamController {
 class StreamData {
 
     lateinit var id: String
-    lateinit var content: Map<String, Any>
+    var content: String = ""
 
-    constructor(id: String, content: Map<String, Any>){
-        this.id=id;
-        this.content=content
+    constructor(content: String) {
+        this.content = content
     }
+
     constructor()
 
 }
