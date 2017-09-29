@@ -16,7 +16,7 @@ class UserServiceImpl(
         override val securityContextService: SecurityContextService
 ) : UserService, WithCurrentUser {
 
-    override fun findOne(id: Long): User {
+    override fun findOne(id: String): User {
         val currentUser = currentUser()
         val user = userRepository.findOne(id)
         val isMyself = currentUser?.let { it.id == user.id }

@@ -1,6 +1,7 @@
 package com.rozkmin.microservice.domain
 
 import com.fasterxml.jackson.annotation.JsonIgnore
+import org.hibernate.annotations.GenericGenerator
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -10,9 +11,9 @@ import javax.validation.constraints.Size
 
 @Entity
 class User {
-    @Id
-    @GeneratedValue
-    var id: Long = 0
+    @Id @GeneratedValue(generator="system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    var id: String = ""
 
     constructor(username: String, password: String, name: String){
         this.username=username

@@ -24,7 +24,6 @@ class TokenHandlerImpl(
             .parseClaimsJws(token)
             .body
             .subject
-            .toLong()
 
         return userRepository.findOne(userId).let(::UserDetailsImpl)
     }
@@ -33,7 +32,7 @@ class TokenHandlerImpl(
         val afterOneWeek = ZonedDateTime.now().plusWeeks(1)
 
         return Jwts.builder()
-            .setSubject(user.id.toString())
+            .setSubject(user.id)
             .signWith(SignatureAlgorithm.HS512, secret)
             .setExpiration(Date.from(afterOneWeek.toInstant()))
             .compact()

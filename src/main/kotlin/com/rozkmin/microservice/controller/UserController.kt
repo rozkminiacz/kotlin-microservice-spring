@@ -18,7 +18,7 @@ class UserController(
     private val userService: UserService
 ) {
 
-    @GetMapping
+    @GetMapping(path = arrayOf("/users"))
     fun list(
         @RequestParam(value = "page", required = false) page: Int?,
         @RequestParam(value = "size", required = false) size: Int?
@@ -34,7 +34,7 @@ class UserController(
     }
 
     @GetMapping(path = arrayOf("/users/{id:\\d+}"))
-    fun show(@PathVariable("id") id: Long) = userService.findOne(id)
+    fun show(@PathVariable("id") id: String) = userService.findOne(id)
 
     @GetMapping(path = arrayOf("/me"))
     fun showMe() = userService.findMe()

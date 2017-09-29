@@ -6,7 +6,7 @@ import com.rozkmin.microservice.dto.request.UserNewParams
 
 interface UserService {
     fun findAll(page: Int, size: Int = 20): MutableIterable<User>
-    fun findOne(id: Long): User
+    fun findOne(id: String): User
     fun findMe(): User
     fun create(params: UserNewParams): User
     fun updateMe(params: UserEditParams)
