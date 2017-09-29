@@ -2,10 +2,11 @@ package com.rozkmin.microservice.dto.request
 
 import javax.validation.constraints.Size
 
-data class UserNewParams(
-    val email: String,
-    @get:Size(min = 8, max = 10)
-    val password: String,
-    val name: String
-)
+class UserNewParams() {
+    var email: String = ""
+//    @get:Size(min = 8, max = 10)
+    var password: String = ""
+    var name: String = ""
+}
+
 

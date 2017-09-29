@@ -34,6 +34,7 @@ class UserServiceImpl(
     override fun findAll(page: Int, size: Int): MutableIterable<User> =
         userRepository.findAll()
 
+    @Throws(EmailInUseException::class)
     override fun create(params: UserNewParams): User {
         return userRepository.save(User(
                 username = params.email,
@@ -52,4 +53,8 @@ class UserServiceImpl(
     }
 
     private fun encrypt(secret: String) = BCryptPasswordEncoder().encode(secret)
+}
+
+class EmailInUseException : Exception() {
+
 }

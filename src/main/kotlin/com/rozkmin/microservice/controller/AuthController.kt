@@ -34,10 +34,10 @@ class AuthController(
             .let { tokenHandler.createTokenForUser(it).let(AuthController::AuthResponse) }
     }
 
-    data class AuthParams(
-        val email: String,
-        val password: String
-    )
+    class AuthParams() {
+        val email: String = ""
+        val password: String = ""
+    }
 
     data class AuthResponse(val token: String)
 

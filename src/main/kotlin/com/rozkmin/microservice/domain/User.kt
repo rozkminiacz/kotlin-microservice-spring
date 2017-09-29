@@ -1,32 +1,40 @@
 package com.rozkmin.microservice.domain
 
 import com.fasterxml.jackson.annotation.JsonIgnore
+import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.GeneratedValue
 import javax.persistence.Id
 import javax.validation.constraints.Pattern
 import javax.validation.constraints.Size
 
 @Entity
-class User(username: String, password: String, name: String) {
+class User {
     @Id
+    @GeneratedValue
     var id: Long = 0
-    fun copy(username: String, password: String, name: String): User = User(username, password, name)
 
-
-    // ------- DB fields -------
+    constructor(username: String, password: String, name: String){
+        this.username=username
+        this.password=password
+        this.name=name
+    }
+    constructor()
 
     @get:JsonIgnore
     @get:Pattern(regexp = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")
     @get:Size(min = 4, max = 30)
+    @Column(unique = true)
     var username: String = ""
 
     @get:JsonIgnore
-    val password: String = ""
+    var password: String = ""
 
     @get:Size(min = 4, max = 30)
-    val name: String = ""
+    var name: String = ""
 
-    // ------- Others -------
+    fun copy(username: String, password: String, name: String): User = User(username, password, name)
+
 
     @get:JsonIgnore
     var isMyself: Boolean? = null // null means unknown
