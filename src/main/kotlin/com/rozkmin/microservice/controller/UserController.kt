@@ -15,18 +15,20 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("/api")
 class UserController(
-    private val userService: UserService
+        private val userService: UserService
 ) {
 
     @GetMapping(path = arrayOf("/users"))
     fun list(
-        @RequestParam(value = "page", required = false) page: Int?,
-        @RequestParam(value = "size", required = false) size: Int?
-    )   = userService.findAll(
+            @RequestParam(value = "page", required = false) page: Int?,
+            @RequestParam(value = "size", required = false) size: Int?
+    ) = userService.findAll(
             page = page ?: 1,
             size = size ?: 5
-        )
+    )
 
+//    @GetMapping(path = arrayOf("/users/{phrase:\\s+}"))
+//    fun matchingName(@PathVariable("phrase") phrase : String) = userService.findByPhrase(phrase)
 
     @PostMapping(path = arrayOf("/register"))
     fun create(@Valid @RequestBody params: UserNewParams): User {

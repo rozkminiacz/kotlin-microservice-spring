@@ -21,10 +21,15 @@ class UserServiceImpl(
         val user = userRepository.findOne(id)
         val isMyself = currentUser?.let { it.id == user.id }
 
-        user.isMyself=isMyself
+        user.isMyself = isMyself
 
         return user
     }
+
+    override fun findByName(name: String): MutableIterable<User> = userRepository
+            .findByUsername(name)
+
+    override fun findByPhrase(phrase: String) = userRepository.findByUsernameContaining(phrase)
 
     override fun findMe(): User {
         val currentUser = currentUserOrThrow()
@@ -32,7 +37,7 @@ class UserServiceImpl(
     }
 
     override fun findAll(page: Int, size: Int): MutableIterable<User> =
-        userRepository.findAll()
+            userRepository.findAll()
 
     @Throws(EmailInUseException::class)
     override fun create(params: UserNewParams): User {
@@ -43,13 +48,17 @@ class UserServiceImpl(
         ))
     }
 
-    override fun updateMe(params: UserEditParams) {
+    override fun updateMe(params: UserEditParams): User? {
         val currentUser = currentUserOrThrow()
-        userRepository.save(currentUser.copy(
-            username = params.email ?: currentUser.username,
-            password = params.password?.let { encrypt(it) } ?: currentUser.password,
-            name = params.name ?: currentUser.name
-        ))
+        currentUser.let {
+            it.username = params.email ?: it.username;
+            it.password = params.password?.let { encrypt(it) } ?: it.password;
+            it.name = params.name ?: it.name;
+            it.avatar = params.avatar ?: it.avatar
+        }
+
+        return userRepository.save(currentUser)
+
     }
 
     private fun encrypt(secret: String) = BCryptPasswordEncoder().encode(secret)

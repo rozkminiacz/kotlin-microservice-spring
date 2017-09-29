@@ -20,6 +20,7 @@ class User {
         this.password=password
         this.name=name
     }
+
     constructor()
 
     @get:JsonIgnore
@@ -34,8 +35,7 @@ class User {
     @get:Size(min = 4, max = 30)
     var name: String = ""
 
-    fun copy(username: String, password: String, name: String): User = User(username, password, name)
-
+    var avatar: String = ""
 
     @get:JsonIgnore
     var isMyself: Boolean? = null // null means unknown
