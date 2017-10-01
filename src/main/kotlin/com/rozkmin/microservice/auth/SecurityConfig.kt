@@ -44,7 +44,7 @@ class SecurityConfig(
                 .antMatchers(HttpMethod.POST, "/api/relationships/**").hasRole("USER")
                 .antMatchers(HttpMethod.DELETE, "/api/relationships/**").hasRole("USER")
                 .antMatchers(HttpMethod.GET, "/api/feed").hasRole("USER")
-                .antMatchers(HttpMethod.GET, "/proxy/leaderboard").hasRole("USER")
+//                .antMatchers(HttpMethod.GET, "/proxy/**").hasRole("USER")
                 .and()
                 .exceptionHandling()
                 .authenticationEntryPoint(Http401AuthenticationEntryPoint("'Bearer token_type=\"JWT\"'"))
@@ -65,6 +65,11 @@ class SecurityConfig(
         return FilterRegistrationBean(filter).apply {
             isEnabled = false
         }
+    }
+
+    @Bean
+    fun proxyFilter(securityContextService: SecurityContextService): ProxyFilter {
+        return ProxyFilter(securityContextService)
     }
 
     override fun configure(auth: AuthenticationManagerBuilder) {
