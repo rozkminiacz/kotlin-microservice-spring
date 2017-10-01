@@ -10,6 +10,7 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy
 @EnableEncryptableProperties
 class MicroserviceApplication
 
+
 fun main(args: Array<String>) {
     SpringApplication.run(MicroserviceApplication::class.java, *args)
 }

@@ -9,7 +9,7 @@ class ProxyFilter(override val securityContextService: SecurityContextService) :
 
     override fun run(): Any? =
             RequestContext.getCurrentContext().put("X-User-Key", securityContextService.currentUser()?.id)
-                    .apply { println(RequestContext.getCurrentContext().keys) }
+//                    .apply { println(RequestContext.getCurrentContext().keys) }
 
 
     override fun shouldFilter(): Boolean = true
