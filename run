@@ -1,0 +1,5 @@
+mysql> database auth_proxy;
+
+mysql> create user 'springuser'@'localhost' identified by 'ThePassword';
+
+mysql> grant all on auth_proxy.* to 'springuser'@'localhost';
