@@ -67,10 +67,10 @@ class SecurityConfig(
         }
     }
 
-    @Bean
-    fun proxyFilter(securityContextService: SecurityContextService): ProxyFilter {
-        return ProxyFilter(securityContextService)
-    }
+//    @Bean
+//    fun proxyFilter(securityContextService: SecurityContextService): ProxyFilter {
+//        return ProxyFilter(securityContextService)
+//    }
 
     override fun configure(auth: AuthenticationManagerBuilder) {
         auth.userDetailsService(userDetailsService).passwordEncoder(BCryptPasswordEncoder())
